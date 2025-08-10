@@ -30,7 +30,7 @@ Implements a basic SMA(100) vs SMA(200) crossover strategy to verify the workflo
 
 ---
 
-## Reading the Plot
+## Plot Analysis
 - **Top (Equity Curve):** Portfolio value over time, with peak/final return, max drawdown, and drawdown duration.
 - **Middle (Price Chart):**  
   - Candles: GOOG price  
@@ -55,10 +55,5 @@ Returned by `backtest.run()`:
 
 ## Notes
 - Strategy is lagging and simplistic — only for framework testing.
-- Goal is to confirm data → signal → trade → result flow.
-- Next steps: try other indicators, add risk controls, test with custom data.
-
+- Goal was to confirm data → signal → trade → result flow.
 ---
-
-## Disclaimer
-Educational use only. No claim of profitability.

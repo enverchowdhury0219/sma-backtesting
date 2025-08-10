@@ -1,20 +1,26 @@
-# Simple SMA Crossover Backtest — `backtesting.py`
+# SMA Crossover Backtest — `backtesting.py`
 
-This small project is me experimenting with the [`backtesting.py`](https://kernc.github.io/backtesting.py/) library for the first time.  
-I’m testing a very basic **moving-average crossover** strategy on Google’s historical stock data (built into the library) to understand how the framework works and how to read its outputs.
+First test run with [`backtesting.py`](https://kernc.github.io/backtesting.py/) using the built-in `GOOG` dataset.  
+Implements a basic SMA(100) vs SMA(200) crossover strategy to verify the workflow and get familiar with the API.
 
 ---
 
-## What this is
+## Purpose
+- Learn `backtesting.py` syntax and structure.
+- See how indicators/signals are defined and executed.
+- Understand what the generated plot and stats represent.
+- Not intended for live trading.
 
-- A learning exercise, not a profitable strategy.
-- A simple test of the workflow:  
-  **define a strategy → run a backtest → inspect results & chart**.
-- Helps me get familiar with:
-  - Defining indicators (`SMA(100)`, `SMA(200)`)
-  - Generating buy/sell signals from crossovers
-  - Running a backtest with trading costs
-  - Reading the visual and statistical output
+---
+
+## Workflow
+1. Load built-in `GOOG` data.
+2. Compute SMA(100) and SMA(200).
+3. Buy on golden cross (SMA100 > SMA200), sell on death cross (SMA100 < SMA200).
+4. Run backtest with:
+   - `commission=0.002`
+   - `exclusive_orders=True`
+5. View stats and plot output.
 
 ---
 
@@ -24,51 +30,35 @@ I’m testing a very basic **moving-average crossover** strategy on Google’s h
 
 ---
 
-## How to read the output
-
-1. **Equity Curve (top strip)**  
-   - Blue line = portfolio growth over time.  
-   - Dots mark **peak return**, **final return**, and **max drawdown** (size and duration).  
-   - Max drawdown duration shows how long it took to recover from the worst loss.
-
-2. **Price Chart with Indicators (middle)**  
-   - Black candles = GOOG price.  
-   - Blue line = SMA(100), Orange line = SMA(200).  
-   - Buy markers appear when the fast SMA crosses above the slow SMA (golden cross).  
-   - Sell markers appear when the fast SMA crosses below the slow SMA (death cross).  
-   - Green/red shaded areas show when the strategy is in a position.
-
-3. **Profit/Loss Markers (just above the price chart)**  
-   - Small green/red triangles indicate notable gains or losses from trades.
-
-4. **Volume (bottom strip)**  
-   - Green/red bars for daily traded volume, giving context to price moves.
+## Reading the Plot
+- **Top (Equity Curve):** Portfolio value over time, with peak/final return, max drawdown, and drawdown duration.
+- **Middle (Price Chart):**  
+  - Candles: GOOG price  
+  - Blue: SMA(100)  
+  - Orange: SMA(200)  
+  - Green marker: Buy signal  
+  - Red marker: Sell signal  
+  - Shaded region = position held
+- **Triangles above/below:** Trade-level profit/loss markers.
+- **Bottom:** Volume bars.
 
 ---
 
-## What the stats tell you
-
-When `backtest.run()` is called, it returns metrics like:
-
-- Total return (%) and annualized growth (CAGR)  
-- Max drawdown (%) and how long it lasted  
-- Number of trades, win rate, best/worst trade  
-- Sharpe ratio, volatility, exposure time  
+## Key Stats
+Returned by `backtest.run()`:
+- Return %, CAGR
+- Max drawdown % and duration
+- Win rate, # trades, best/worst trade
+- Sharpe ratio, volatility, exposure %
 
 ---
 
-## Why I’m doing this
-
-- To learn **how** a backtesting framework operates.  
-- To connect **signals → trades → results** visually and statistically.  
-- To practice interpreting equity curves, drawdowns, and trade distributions.  
-- To see how transaction costs change outcomes.
+## Notes
+- Strategy is lagging and simplistic — only for framework testing.
+- Goal is to confirm data → signal → trade → result flow.
+- Next steps: try other indicators, add risk controls, test with custom data.
 
 ---
 
-## Key takeaways
-
-- The chart makes it easy to see **trend-following behavior**, **whipsaws**, and **drawdowns**.  
-- The goal here is exploration, not optimization.
-
----
+## Disclaimer
+Educational use only. No claim of profitability.

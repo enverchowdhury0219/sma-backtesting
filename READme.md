@@ -1,0 +1,1 @@
+start of using the Backtest library in Python by simulating a simple moving average strategy

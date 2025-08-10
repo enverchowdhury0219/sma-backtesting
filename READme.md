@@ -20,8 +20,6 @@ I’m testing a very basic **moving-average crossover** strategy on Google’s h
 
 ## Output
 
-*(Insert image here)*
-
 ![SMA Crossover Backtest Output](output/backtest_output.png)
 
 ---

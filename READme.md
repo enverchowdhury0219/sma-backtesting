@@ -22,7 +22,7 @@ I’m testing a very basic **moving-average crossover** strategy on Google’s h
 
 *(Insert image here)*
 
-![SMA Crossover Backtest Output](./sma_crossover_output.png)
+![SMA Crossover Backtest Output](output/backtest_output.png)
 
 ---
 
